@@ -21,8 +21,8 @@ const TdStyled = styled.td`
 
 `
 
-export default function Shimmer({row, columns}) {
-
+ function Shimmer({row, columns}) {
+  
     const tableRows = [];
 
     for (let i = 0; i < row; i+=1) {
@@ -41,6 +41,11 @@ export default function Shimmer({row, columns}) {
   </table>
   )
 }
+
+const MemoizeShimmer = React.memo(Shimmer)
+
+
+export default MemoizeShimmer
 
 Shimmer.propTypes = {
   row: PropTypes.number,

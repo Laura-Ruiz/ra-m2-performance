@@ -1,5 +1,5 @@
 /* eslint-disable react/forbid-prop-types */
-import { useEffect, useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import PropTypes from 'prop-types'
 import TableProvider, { TableContext } from './store/context'
 import { Actions } from './store/reducer'
@@ -8,12 +8,12 @@ import TableBody from './TableBody'
 import TableHeader from './TableHeader'
 import TableFooter from './TableFooter'
 import DownloadButton from '../../molecules/DownloadButton'
-import Shimmer from './Shimmer'
+import MemoizeShimmer from './Shimmer'
 
 
 function Table({ columns, data, showHeader = true, isLoading }) {
   const { dispatch } = useContext(TableContext)
-
+  
   useEffect(() => {
     if(data){
       dispatch({ type: Actions.SET_DATA, payload: Object.values(data) })
@@ -24,14 +24,13 @@ function Table({ columns, data, showHeader = true, isLoading }) {
   }, [data, columns, dispatch])
 
 
-  
   return (
     <>
      <StyledDiv>
         <span>Ordenar por...</span>
         <DownloadButton/>
       </StyledDiv>
-      {isLoading ? <Shimmer row = {11} columns ={5}/> :
+      {isLoading ? <MemoizeShimmer row = {11} columns ={5}/> :
       <>
       <TableStyled>
           {showHeader && <TableHeader />}
@@ -52,6 +51,8 @@ function ITATable(props) {
     </TableProvider>
   )
 }
+
+
 
 
 Table.propTypes = {
