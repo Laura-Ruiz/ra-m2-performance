@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useMemo } from 'react'
 import { TableContext } from './store/context'
 import { TableCell } from './styles'
 
@@ -7,12 +7,13 @@ function TableBody() {
   const { sortedData, columns, currentPage, itemsPerPage } = state
   
  
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
+  const memoizedStartIndex = useMemo(() => (currentPage - 1) * itemsPerPage, [currentPage, itemsPerPage])
+  const memoizedEndIndex =  useMemo(() => memoizedStartIndex + itemsPerPage, [itemsPerPage, memoizedStartIndex])
+ 
 
     return (
     <tbody>
-      {sortedData.slice(startIndex, endIndex).map((d) => (
+      {sortedData.slice(memoizedStartIndex, memoizedEndIndex).map((d) => (
         <tr key={d.id}>
           {columns
             .filter((col) => !col.isHidden)

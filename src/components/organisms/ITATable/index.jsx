@@ -56,7 +56,7 @@ function ITATable(props) {
 
 
 Table.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.array,
   columns: PropTypes.array,
   showHeader: PropTypes.bool,
   isLoading: PropTypes.bool
