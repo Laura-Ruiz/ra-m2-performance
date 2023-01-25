@@ -1,8 +1,8 @@
-import React, { useContext, useMemo } from 'react'
+import React, { useCallback, useContext, useMemo } from 'react'
 // eslint-disable-next-line import/named
-import { Button, Icon } from '../atoms'
-import { TableContext } from '../organisms/ITATable/store/context'
-import { SpanStyled } from '../organisms/ITATable/styles'
+import { Button, Icon } from '../../atoms'
+import { TableContext } from './store/context'
+import { SpanStyled } from './styles'
 
 export default function Pagination() {
   const { state, dispatch } = useContext(TableContext)
@@ -14,17 +14,17 @@ export default function Pagination() {
     [itemsPerPage, state.data.length]
   )
 
-  const handlePreviousClick = () => {
+  const handlePreviousClick = useCallback(() => {
     if (currentPage > 1) {
       dispatch({ type: 'SET_CURRENTPAGE', payload: currentPage - 1 })
     }
-  }
+  },[currentPage, dispatch])
 
-  const handleNextClick = () => {
+  const handleNextClick = useCallback(() => {
     if (currentPage < memoizeTotalPages) {
       dispatch({ type: 'SET_CURRENTPAGE', payload: currentPage + 1 })
     }
-  }
+  },[currentPage, dispatch, memoizeTotalPages])
 
   return (
     <div style={{ display: 'flex' }}>

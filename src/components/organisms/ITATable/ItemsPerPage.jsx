@@ -1,8 +1,8 @@
 import React, {useContext} from 'react'
 // eslint-disable-next-line import/named
-import {SelectOption, Select}  from '../atoms'
-import { TableContext } from '../organisms/ITATable/store/context'
-import { SpanStyled } from '../organisms/ITATable/styles'
+import {SelectOption, Select}  from '../../atoms'
+import { TableContext } from './store/context'
+import { SpanStyled } from './styles'
 
 
 const options = [
