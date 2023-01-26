@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import { Icon } from '../atoms'
-import { TableContext } from '../organisms/ITATable/store/context'
+import { Icon } from '../../../atoms'
+import { TableContext } from '../store/context'
 
 export default function IconsTable({ column }) {
   const { state } = useContext(TableContext)
